@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketing System</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">🎧</div>
+                <div>
+                    <h2>Ticketing System</h2>
+                    <p>Soporte Técnico Personal</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a class="nav-link active" href="#">Dashboard</a>
+                <a class="nav-link" href="#">Tickets</a>
+                <a class="nav-link" href="#">Nuevo Ticket</a>
+                <a class="nav-link" href="#">Reportes</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Resumen general de tickets</p>
+                </div>
+            </header>
+
+            <section class="summary-grid">
+                <div class="summary-card">
+                    <span id="openCount">0</span>
+                    <p>Abiertos</p>
+                </div>
+
+                <div class="summary-card">
+                    <span id="processCount">0</span>
+                    <p>En proceso</p>
+                </div>
+
+                <div class="summary-card">
+                    <span id="closedCount">0</span>
+                    <p>Cerrados</p>
+                </div>
+
+                <div class="summary-card">
+                    <span id="totalCount">0</span>
+                    <p>Total</p>
+                </div>
+            </section>
+
+            <section class="content-grid">
+
+                <section class="card">
+                    <h2>Crear nuevo ticket</h2>
+
+                    <form id="ticketForm">
+                        <div class="form-group">
+                            <label for="title">Título</label>
+                            <input type="text" id="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Descripción</label>
+                            <textarea id="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="status">Estado</label>
+                                <select id="status">
+                                    <option value="open">Abierto</option>
+                                    <option value="in_process">En proceso</option>
+                                    <option value="closed">Cerrado</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="priority">Prioridad</label>
+                                <select id="priority">
+                                    <option value="low">Baja</option>
+                                    <option value="medium">Media</option>
+                                    <option value="high">Alta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit">Crear ticket</button>
+                    </form>
+                </section>
+
+                <section class="card">
+                    <h2>Tickets recientes</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                                <th>Creado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="ticketsTableBody"></tbody>
+                    </table>
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="./js/tickets.js"></script>
+</body>
+</html>

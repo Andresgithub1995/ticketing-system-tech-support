@@ -12,6 +12,63 @@ const getTickets = async (req, res) => {
     }
 };
 
+const createTicket = async (req, res) => {
+    try {
+        const {
+            title,
+            description,
+            status,
+            priority
+        } = req.body;
+
+        const [result] = await db.query(
+            `INSERT INTO tickets 
+            (title, description, status, priority) 
+            VALUES (?, ?, ?, ?)`,
+            [
+                title,
+                description,
+                status || 'open',
+                priority || 'medium'
+            ]
+        );
+
+        res.status(201).json({
+            message: 'Ticket creado correctamente',
+            ticketId: result.insertId
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Error creando ticket'
+        });
+    }
+};
+
+const closeTicket = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await db.query(
+            'UPDATE tickets SET status = ? WHERE id = ?',
+            ['closed', id]
+        );
+
+        res.json({
+            message: 'Ticket cerrado correctamente'
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Error cerrando ticket'
+        });
+    }
+};
+
 module.exports = {
-    getTickets
-}
+    getTickets,
+    createTicket,
+    closeTicket
+};
