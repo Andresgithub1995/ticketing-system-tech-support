@@ -1,5 +1,31 @@
 const db = require('../config/db');
 
+const getTicketById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const [rows] = await db.query(
+            'SELECT * FROM tickets WHERE id = ?',
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                message: 'Ticket no encontrado'
+            });
+        }
+
+        res.json(rows[0]);
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: 'Error obteniendo ticket'
+        });
+    }
+};
+
 const getTickets = async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM tickets');
@@ -69,6 +95,7 @@ const closeTicket = async (req, res) => {
 
 module.exports = {
     getTickets,
+    getTicketById,
     createTicket,
     closeTicket
 };

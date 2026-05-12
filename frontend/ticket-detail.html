@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Ticket</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">🎧</div>
+
+                <div>
+                    <h2>Ticketing System</h2>
+                    <p>Soporte Técnico Personal</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a class="nav-link" href="./tickets.html">
+                    ← Volver al Dashboard
+                </a>
+            </nav>
+
+        </aside>
+
+        <!-- MAIN -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <h1 id="ticketTitle">Ticket</h1>
+                <p id="ticketStatus">Estado</p>
+            </header>
+
+            <section class="card">
+
+                <h2>Información del ticket</h2>
+
+                <div class="ticket-info">
+
+                    <p>
+                        <strong>Descripción:</strong>
+                    </p>
+
+                    <p id="ticketDescription"></p>
+
+                    <br>
+
+                    <p>
+                        <strong>Prioridad:</strong>
+                        <span id="ticketPriority"></span>
+                    </p>
+
+                    <p>
+                        <strong>Fecha:</strong>
+                        <span id="ticketDate"></span>
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="card notes-card">
+
+                <h2>Notas</h2>
+
+                <form id="noteForm">
+
+                    <div class="form-group">
+
+                        <label for="noteInput">
+                            Nueva nota
+                        </label>
+
+                        <textarea
+                            id="noteInput"
+                            rows="4"
+                            required
+                        ></textarea>
+
+                    </div>
+
+                    <button type="submit">
+                        Agregar nota
+                    </button>
+
+                </form>
+
+                <div id="notesList" class="notes-list"></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="./js/ticketDetail.js"></script>
+
+</body>
+
+</html>

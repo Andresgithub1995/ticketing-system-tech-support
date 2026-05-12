@@ -53,16 +53,51 @@ async function loadTickets() {
 
             row.innerHTML = `
                 <td>${ticket.id}</td>
+
                 <td>${ticket.title}</td>
-                <td>${translateStatus(ticket.status)}</td>
-                <td>${translatePriority(ticket.priority)}</td>
-                <td>${new Date(ticket.created_at).toLocaleString()}</td>
+
                 <td>
+                    <span class="status-badge status-${ticket.status}">
+                        ${translateStatus(ticket.status)}
+                    </span>
+                </td>
+
+                <td>
+                    <span class="priority-badge priority-${ticket.priority}">
+                        ${translatePriority(ticket.priority)}
+                    </span>
+                </td>
+
+                <td>
+                    ${new Date(ticket.created_at).toLocaleString()}
+                </td>
+
+                <td class="actions">
+
+                    <a 
+                        class="view-btn"
+                        href="./ticket-detail.html?id=${ticket.id}"
+                    >
+                        Ver
+                    </a>
+
                     ${
                         ticket.status !== 'closed'
-                            ? `<button class="close-btn" onclick="closeTicket(${ticket.id})">Cerrar</button>`
-                            : `<span class="closed-label">Cerrado</span>`
+                            ? `
+                                <button 
+                                    class="close-btn" 
+                                    onclick="closeTicket(${ticket.id})"
+                                >
+                                    Cerrar
+                                </button>
+                              `
+                            : `
+                                <span class="closed-label">
+                                    Cerrado
+                                </span>
+                              `
                     }
+
                 </td>
             `;
 
@@ -98,6 +133,7 @@ async function createTicket(event) {
         }
 
         ticketForm.reset();
+
         loadTickets();
 
     } catch (error) {

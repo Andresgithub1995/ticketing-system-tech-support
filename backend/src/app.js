@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const noteRoutes = require('./routes/noteRoutes');
 
 require('dotenv').config();
 
@@ -15,5 +16,7 @@ app.use('/api/tickets', ticketRoutes);
 app.get('/', (req, res) => {
     res.send('Welcome to the Ticketing System API');
 });
+
+app.use('/api', noteRoutes);
 
 module.exports = app;
